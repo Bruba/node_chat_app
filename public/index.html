@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p> Welcome to Chatroom </p>
+
+<script src = "/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+    socket.on('connect', ()=>{
+        console.log('connected to server');
+    });
+    //var socket = io();
+    socket.on('disconnect', ()=>{
+        console.log('disconnected from server');
+
+    });
+    </script>
+
+</body>
+</html>
