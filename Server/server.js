@@ -22,6 +22,19 @@ const io = socketIO(server);
 app.use(express.static(publicPath));
 io.on('connection',(socket) => {
     console.log('new user connected');
+    //socket.emit from admin to welcome new user
+    socket.emit('newMessage',{
+        from: "Admin",
+        text: "Welcome to the chat app",
+        createdAt: new Date().getTime()
+    });
+
+    //socket.broadcast.emit from admin to other users informing them that a new user joined
+    socket.broadcast.emit('newMessage', {
+        from: "Admin",
+        text: "new user joined",
+        createdAt: new Date().getTime()
+    });
 
 
     socket.on('createMessage', (message) => {
@@ -31,6 +44,7 @@ io.on('connection',(socket) => {
             text: message.text,
             createdAt: new Date().getTime()
         });
+
     });
 
     socket.on('disconnect', ()=> {
