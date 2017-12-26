@@ -37,11 +37,11 @@ io.on('connection',(socket) => {
     //specifying a listener for the location event
     socket.on('createLocationMessage', (coords)=> {
         io.emit('newLocationMessage', generateLocationMessage('Admin', coords.latitude, coords.longitude))
-    })
+    });
 
     socket.on('disconnect', ()=> {
         console.log('User was disconnected from server');
-    })
+    });
 
 });
 
