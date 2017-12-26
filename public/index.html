@@ -2,23 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel ="stylesheet" href = "/css/styles.css">
     <title>Title</title>
 </head>
-<body>
-<p> Welcome to Chatroom </p>
+<body class ="chat">
+    <div class="chat__sidebar">
+        <h3>Friends</h3>
+        <div id="users"></div>
+    </div>
 
-<ol id="messages"></ol>
 
-<!create a form submitable by the user>
-<form id = "message-form">
-    <input name ="message" type ="text" placeholder="Message"/>
-    <button>Send</button>
-</form>
-<button id ="send-location">Send Location</button>
+    <div class ="chat__main">
+        <ol id="messages" class="chat__messages"></ol>
 
-<script src = "/socket.io/socket.io.js"></script>
-<script src = "/js/libs/jquery-3.2.1.min.js"></script>
-<script src = "/js/index.js"></script>
+        <div class="chat__footer">
+            <!create a form submitable by the user>
+            <form id = "message-form">
+                <input name ="message" type ="text" placeholder="Message" autofocus autocomplete ="off"/>
+                <button>Send</button>
+            </form>
+            <button id ="send-location">Send location</button>
+        </div>
+    </div>
+
+
+
+    <script src = "/socket.io/socket.io.js"></script>
+    <script src = "/js/libs/jquery-3.2.1.min.js"></script>
+    <script src = "/js/index.js"></script>
 
 </body>
 </html>

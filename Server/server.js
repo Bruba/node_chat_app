@@ -32,7 +32,7 @@ io.on('connection',(socket) => {
     socket.on('createMessage', (message, callback) => {
         console.log('createMessage', message);
         io.emit('newMessage', generateMessage(message.from, message.text));
-        callback('do not respond, this is an automatic mail from the server');
+        callback();
     });
     //specifying a listener for the location event
     socket.on('createLocationMessage', (coords)=> {
