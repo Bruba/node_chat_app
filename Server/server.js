@@ -3,9 +3,10 @@ const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
 
+
 const {generateMessage, generateLocationMessage} = require('./utils/message');
 const publicPath = path.join(__dirname, '../public');
-
+const {isRealString} = require('./utils/validation');
 //setting up express. we don't configur express by passing in arguments. instead we configure express by calling method on app
 // to create routes, add middleware or startup the server
 let app = express();
@@ -27,6 +28,14 @@ io.on('connection',(socket) => {
 
     //socket.broadcast.emit from admin to other users informing them that a new user joined
     socket.broadcast.emit('newMessage', generateMessage('Admin', 'new user Joined'));
+
+    //create a listener event for join
+    socket.on('join', (params, callback) => {
+        if (!isRealString(params.name) || !isRealString(params.room)){
+            callback('Name and Room Name are required')
+        }
+        callback();
+    });
 
 
     socket.on('createMessage', (message, callback) => {
